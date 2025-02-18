@@ -1,0 +1,39 @@
+databaseChangeLog:
+  - changeSet:
+      id: 180220251728
+      author: stepan_morgachev
+      changes:
+        - createTable:
+            tableName: game
+            columns:
+              - column:
+                  name: game_id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: width
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: height
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mines_count
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: completed
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: field
+                  type: jsonb
+                  constraints:
+                    nullable: false
