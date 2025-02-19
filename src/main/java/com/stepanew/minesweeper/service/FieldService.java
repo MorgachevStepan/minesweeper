@@ -9,4 +9,10 @@ public interface FieldService {
 
     Cell[][] generateVisibleField(NewGameRequest request);
 
+    void floodFill(Cell[][] actualField, Cell[][] visibleField, int startRow, int startCol);
+
+    void revealAllMines(Cell[][] visibleField, Cell[][] actualField);
+
+    void revealAllFounded(Cell[][] actualField);
+
 }
