@@ -35,7 +35,7 @@ public class DefaultFieldGenerationStrategy implements FieldGenerationStrategy {
 
         Cell[][] field = new Cell[height][width];
         for (int y = 0; y < height; y++) {
-            Arrays.fill(field[y], Cell.EMPTY);
+            Arrays.fill(field[y], Cell.CELL_0);
         }
 
         Set<Point> mines = placeMines(width, height, minesCount);
@@ -98,7 +98,7 @@ public class DefaultFieldGenerationStrategy implements FieldGenerationStrategy {
      */
     private Cell getNextCell(Cell cell) {
         return switch (cell) {
-            case EMPTY -> Cell.CELL_1;
+            case CELL_0 -> Cell.CELL_1;
             case CELL_1 -> Cell.CELL_2;
             case CELL_2 -> Cell.CELL_3;
             case CELL_3 -> Cell.CELL_4;

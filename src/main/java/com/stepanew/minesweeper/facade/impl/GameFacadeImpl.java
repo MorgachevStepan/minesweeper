@@ -1,5 +1,6 @@
 package com.stepanew.minesweeper.facade.impl;
 
+import com.stepanew.minesweeper.domain.dto.request.GameTurnRequest;
 import com.stepanew.minesweeper.domain.dto.request.NewGameRequest;
 import com.stepanew.minesweeper.domain.dto.response.GameInfoResponse;
 import com.stepanew.minesweeper.facade.GameFacade;
@@ -20,6 +21,11 @@ public class GameFacadeImpl implements GameFacade {
     public GameInfoResponse createGame(NewGameRequest request) {
         newGameRequestValidator.validate(request);
         return gameService.createGame(request);
+    }
+
+    @Override
+    public GameInfoResponse makeNewTurn(GameTurnRequest request) {
+        return gameService.makeNewTurn(request);
     }
 
 }

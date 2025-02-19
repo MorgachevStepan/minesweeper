@@ -1,5 +1,6 @@
 package com.stepanew.minesweeper.controller;
 
+import com.stepanew.minesweeper.domain.dto.request.GameTurnRequest;
 import com.stepanew.minesweeper.domain.dto.request.NewGameRequest;
 import com.stepanew.minesweeper.domain.dto.response.GameInfoResponse;
 import com.stepanew.minesweeper.facade.GameFacade;
@@ -23,6 +24,12 @@ public class GameController {
     @ResponseStatus(HttpStatus.OK)
     public GameInfoResponse createGame(@Valid @RequestBody NewGameRequest request) {
         return gameFacade.createGame(request);
+    }
+
+    @PostMapping("/turn")
+    @ResponseStatus(HttpStatus.OK)
+    public GameInfoResponse makeNewTurn(@Valid @RequestBody GameTurnRequest request) {
+        return gameFacade.makeNewTurn(request);
     }
 
 }

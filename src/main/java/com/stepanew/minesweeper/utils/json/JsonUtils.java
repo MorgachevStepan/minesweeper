@@ -3,6 +3,7 @@ package com.stepanew.minesweeper.utils.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.stepanew.minesweeper.exception.DeserializationException;
 import com.stepanew.minesweeper.exception.SerializationException;
 
 public class JsonUtils {
@@ -18,6 +19,14 @@ public class JsonUtils {
             return OBJECT_MAPPER.writeValueAsString(object);
         } catch (JsonProcessingException e) {
             throw new SerializationException();
+        }
+    }
+
+    public static <T> T deserialize(String json, Class<T> clazz) {
+        try {
+            return OBJECT_MAPPER.readValue(json, clazz);
+        } catch (JsonProcessingException e) {
+            throw new DeserializationException();
         }
     }
 
