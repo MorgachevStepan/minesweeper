@@ -42,6 +42,7 @@ public class GameServiceImpl implements GameService {
     @Transactional
     public GameInfoResponse makeNewTurn(GameTurnRequest request) {
         Game game = gameStorageService.loadGame(request.gameId());
+        System.out.println(game);
 
         if (game.isCompleted()) {
             throw new GameIsCompletedException();

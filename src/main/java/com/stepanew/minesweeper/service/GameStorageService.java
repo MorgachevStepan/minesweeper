@@ -16,6 +16,6 @@ public interface GameStorageService {
 
     Cell[][] getVisibleField(Game game);
 
-    void updateGame(Game game, Cell[][] actualField);
+    Game updateGame(Game game, Cell[][] actualField);
 
 }

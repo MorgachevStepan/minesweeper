@@ -1,14 +1,18 @@
 server:
-  port: ${APPLICATION_PORT}
+  port: 8080
 
 spring:
   config:
     import: optional:file:.env[.properties]
   datasource:
-    url: jdbc:postgresql://${HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -25,3 +29,7 @@ spring:
     change-log: classpath:liquibase/db.changelog-master.yml
     enabled: true
     default-schema: public
+
+cache:
+  redis:
+    time-to-live: ${REDIS_TTL}

@@ -9,6 +9,8 @@ import com.stepanew.minesweeper.repository.GameRepository;
 import com.stepanew.minesweeper.service.GameStorageService;
 import com.stepanew.minesweeper.utils.json.JsonUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -29,6 +31,7 @@ public class GameStorageServiceImpl implements GameStorageService {
         return gameRepository.save(game);
     }
 
+    @Cacheable(value = "games", key = "#gameId", unless = "#result == null")
     public Game loadGame(UUID gameId) {
         return gameRepository.findById(gameId)
                 .orElseThrow(() -> new GameIsNotFoundException(gameId));
@@ -42,8 +45,11 @@ public class GameStorageServiceImpl implements GameStorageService {
         return JsonUtils.deserialize(game.getVisibleField(), Cell[][].class);
     }
 
-    public void updateGame(Game game, Cell[][] actualField) {
+
+    @CachePut(value = "games", key = "#game.gameId")
+    public Game updateGame(Game game, Cell[][] actualField) {
         game.setActualField(JsonUtils.serialize(actualField));
-        gameRepository.save(game);
+        return gameRepository.save(game);
     }
+
 }
