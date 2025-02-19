@@ -9,6 +9,8 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
@@ -36,7 +38,12 @@ public class Game {
     @Column(name = "completed", nullable = false)
     private boolean completed = false;
 
-    @Column(name = "field", columnDefinition = "jsonb", nullable = false)
-    private String field;
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "actual_field", columnDefinition = "jsonb", nullable = false)
+    private String actualField;
+
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "visible_field", columnDefinition = "jsonb", nullable = false)
+    private String visibleField;
 
 }

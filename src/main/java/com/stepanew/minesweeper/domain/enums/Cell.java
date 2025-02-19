@@ -28,9 +28,14 @@ public enum Cell {
     CELL_8("8"),
 
     NOT_FOUNDED("X"),
+
     FOUNDED("M");
 
     private final String value;
 
+    @Override
+    public String toString() {
+        return value;
+    }
 
 }

@@ -33,7 +33,12 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: field
+                  name: actual_field
+                  type: jsonb
+                  constraints:
+                    nullable: false
+              - column:
+                  name: visible_field
                   type: jsonb
                   constraints:
                     nullable: false

@@ -1,7 +1,6 @@
 package com.stepanew.minesweeper.domain.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.stepanew.minesweeper.domain.enums.Cell;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +19,7 @@ public record GameInfoResponse(
 
         Boolean completed,
 
-        List<List<Cell>> field
+        List<List<String>> field
 
 ) {
 }

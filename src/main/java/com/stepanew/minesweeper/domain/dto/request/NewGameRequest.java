@@ -19,6 +19,7 @@ public record NewGameRequest(
 
         @JsonProperty("mines_count")
         @NotNull(message = "Количество мин не может быть null")
+        @Min(value = 1, message = "Количество мин не может быть меньше 1")
         Integer minesCount
 
 ) {
