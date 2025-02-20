@@ -12,10 +12,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class GameStorageServiceImpl implements GameStorageService {
 
@@ -32,6 +34,7 @@ public class GameStorageServiceImpl implements GameStorageService {
     }
 
     @Cacheable(value = "games", key = "#gameId", unless = "#result == null")
+    @Transactional(readOnly = true)
     public Game loadGame(UUID gameId) {
         return gameRepository.findById(gameId)
                 .orElseThrow(() -> new GameIsNotFoundException(gameId));

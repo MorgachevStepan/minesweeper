@@ -13,7 +13,6 @@ import com.stepanew.minesweeper.service.GameStateService;
 import com.stepanew.minesweeper.service.GameStorageService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -28,7 +27,6 @@ public class GameServiceImpl implements GameService {
     private final GameStorageService gameStorageService;
 
     @Override
-    @Transactional
     public GameInfoResponse createGame(NewGameRequest request) {
         Cell[][] actualField = fieldService.generateActualField(request);
         Cell[][] visibleField = fieldService.generateVisibleField(request);
@@ -39,7 +37,6 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    @Transactional
     public GameInfoResponse makeNewTurn(GameTurnRequest request) {
         Game game = gameStorageService.loadGame(request.gameId());
         System.out.println(game);
